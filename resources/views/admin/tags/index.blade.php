@@ -29,7 +29,7 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Slug</th>
-                    <th>Projects with this tags</th>
+                    <th>N° of Projects with this lenguage</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -40,7 +40,7 @@
                         <td scope="row"> <b>{{ $tag->name }}</b> </td>
                         <td scope="row"> {{ $tag->slug }}</td>
                         <td scope="row">
-                            <div class="badge bg-dark">{{ $tag->projects()->count() }}</div>
+                            {{-- <div class="badge bg-dark">{{ $tag->projects()->count() }}</div> --}}
                         </td>
                         <td scope="row">
                             <button tag="button" class="btn btn-danger fs_13" data-bs-toggle="modal"
