@@ -12,12 +12,12 @@
     @include('profile.partials.validation_errors')
     <div class="container d-flex justify-content-center align-item-center">
         <div class="form_container w-100">
-            <form class="text-white w-100" action="{{ route('admin.projects.update', $project->slug) }}" method="POST">
+            <form class="text-dark w-100" action="{{ route('admin.projects.update', $project->slug) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="mb-3 ">
 
-                    <label for="title" class="col-4 col-form-label">title</label>
+                    <label for="title" class="col-4 col-form-label">Title</label>
                     <div class="col-12">
                         <input type="text" class="form-control w-100" name="title" id="title"
                             value="{{ old('title', $project->title) }}" placeholder="Title">
@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="type_id" class="form-label">City</label>
+                    <label for="type_id" class="form-label">Technology</label>
                     <select class="form-select form-select-lg @error('type_id') is-invalid @enderror" name="type_id"
                         id="type_id">
                         <option selected>Select one</option>
@@ -71,6 +71,42 @@
 
                     </select>
                 </div>
+                <div class="form-group">
+                    <p>Technologies</p>
+                    @foreach ($tags as $tag)
+                        <div class="form-check @error('tags') is-invalid @enderror">
+                            <label class="form-check-label">
+                                @if ($errors->any())
+                                    {{-- se ci sono degli errori di validazione
+                            signifca che bisogna recuperare i tag selezionati
+                            tramite la funzione old(),
+                            la quale restituisce un array plain contenente solo gli id --}}
+
+                                    <input name="tags[]" type="checkbox" value="{{ $tag->id }}"
+                                        class="form-check-input"
+                                        {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}>
+                                @else
+                                    {{-- se non sono presenti errori di validazione
+                            significa che la pagina è appena stata aperta per la prima volta,
+                            perciò bisogna recuperare i tag dalla relazione con il post,
+                            che è una collection di oggetti di tipo Tag	--}}
+
+                                    <input name="tags[]" type="checkbox" value="{{ $tag->id }}"
+                                        class="form-check-input" {{ $project->tags->contains($tag) ? 'checked' : '' }}>
+                                @endif
+
+
+                                {{ $tag->name }}
+                            </label>
+
+                        </div>
+                    @endforeach
+                    @error('tags')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+
                 {{-- <div class="mb-3 ">
                     <label for="languages_used" class="col-4 col-form-label">languages_used</label>
                     <div class="col-12">

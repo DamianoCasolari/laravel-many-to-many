@@ -25,7 +25,7 @@
     align-middle text-center">
             <thead class="table-light">
                 <caption class="ms-1">Technology Index</caption>
-                <tr>
+                <tr class="table-info">
                     <th>Id</th>
                     <th>Name</th>
                     <th>Slug</th>
@@ -40,8 +40,7 @@
                         <td scope="row"> <b>{{ $tag->name }}</b> </td>
                         <td scope="row"> {{ $tag->slug }}</td>
                         <td scope="row">
-                            {{-- <div class="badge bg-dark">{{ $tag->projects->count() }}</div> --}}
-                            number
+                            <div class="badge bg-dark">{{ $tag->projects()->count() }}</div>
                         </td>
                         <td scope="row">
                             <button tag="button" class="btn btn-danger fs_13" data-bs-toggle="modal"
@@ -56,7 +55,7 @@
 
                     <div class="modal fade" id="modalId-{{ $tag->id }}" tabindex="-1" role="dialog"
                         aria-labelledby="modalTitleId-{{ $tag->id }}" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="modalTitleId-{{ $tag->id }}">{{ __('Warning') }}</h5>

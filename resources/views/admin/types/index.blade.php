@@ -23,9 +23,9 @@
     table-hover	
     table-borderless
     align-middle text-center">
-            <thead class="table-light">
+            <thead>
                 <caption class="m-1">Types Index</caption>
-                <tr>
+                <tr class="table-info">
                     <th>Id</th>
                     <th>Name</th>
                     <th>Slug</th>
@@ -56,7 +56,7 @@
 
                     <div class="modal fade" id="modalId-{{ $type->id }}" tabindex="-1" role="dialog"
                         aria-labelledby="modalTitleId-{{ $type->id }}" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="modalTitleId-{{ $type->id }}">{{ __('Warning') }}</h5>

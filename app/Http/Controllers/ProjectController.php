@@ -84,7 +84,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        $tags = Tag::orderByDesc('id')->get();
+        return view('admin.projects.edit', compact('project', 'types', 'tags'));
     }
 
     /**
@@ -108,6 +109,10 @@ class ProjectController extends Controller
         // Create the new Project
         $project->update($val_data);
         // redirect back
+
+        if ($request->has('tags')) {
+            $project->tags()->sync($request->tags);
+        }
         return to_route('admin.projects.index')->with('message', 'file edited successfully');
     }
 
