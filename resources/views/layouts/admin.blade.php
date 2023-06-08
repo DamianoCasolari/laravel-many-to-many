@@ -90,9 +90,10 @@
 
                             </li>
                             <li class="nav-item rounded_opt">
-                                <a class="nav-link p-2 " href="#">
+                                <a class="nav-link p-2 {{ Route::currentRouteName() == 'admin.tags.index' ? 'bg-dark  text-white-50 border rounded-4' : 'text-muted' }}"
+                                    href="{{ route('admin.tags.index') }}">
                                     <i class="fa-solid fa-tags"></i>
-                                    Tags
+                                    {{ __('Tags') }}
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -130,6 +131,7 @@
                                 {{ __('Project') }}
                             </a>
                         </li>
+
                         <li class="nav-item hover_bg">
                             <a class="nav_link {{ Route::currentRouteName() == 'admin.types.index' ? 'bg-dark  text-white-50' : '' }}"
                                 href="{{ route('admin.types.index') }}">
@@ -138,12 +140,12 @@
                             </a>
                         </li>
                         <li class="nav-item hover_bg">
-                            <a class="nav_link " href="#">
+                            <a class="nav_link {{ Route::currentRouteName() == 'admin.tags.index' ? 'bg-dark  text-white-50' : '' }}"
+                                href="{{ route('admin.tags.index') }}">
                                 <i class="fa-solid fa-tags"></i>
-                                Tags
+                                {{ __('Tags') }}
                             </a>
                         </li>
-
                     </ul>
                 </div>
             </nav>

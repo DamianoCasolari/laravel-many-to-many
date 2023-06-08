@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -34,6 +35,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     ]);
     Route::resource('types', TypeController::class)->parameters([
         'types' => 'type:slug'
+    ]);
+    Route::resource('tags', TagController::class)->parameters([
+        'tags' => 'tag:slug'
     ]);
 });
 
