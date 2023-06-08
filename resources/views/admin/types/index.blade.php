@@ -24,7 +24,7 @@
     table-borderless
     align-middle text-center">
             <thead class="table-light">
-                <caption>Types Index</caption>
+                <caption class="m-1">Types Index</caption>
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
@@ -40,7 +40,7 @@
                         <td scope="row"> <b>{{ $type->name }}</b> </td>
                         <td scope="row"> {{ $type->slug }}</td>
                         <td scope="row">
-                            <div class="badge bg-dark">{{ $type->projects->count() }}</div>
+                            <div class="badge p-2 bg-dark">{{ $type->projects->count() }}</div>
 
                         </td>
                         <td scope="row">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Tag;
 use App\Models\Type;
 
 class ProjectController extends Controller
@@ -28,7 +29,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $tags = Tag::all();
+        return view('admin.projects.create', compact('tags', 'types'));
     }
 
     /**
@@ -50,8 +52,13 @@ class ProjectController extends Controller
         //dd($val_data);
 
         // Create the new Project
-        Project::create($val_data);
+        $new_progect = Project::create($val_data);
         // redirect back
+
+        if ($request->has('tags')) {
+            $new_progect->tags()->attach($request->tags);
+        }
+
 
         return to_route('admin.projects.index')->with('message', 'Project Created Successfully');
     }

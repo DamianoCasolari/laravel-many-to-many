@@ -37,7 +37,6 @@ class TagController extends Controller
      */
     public function store(StoreTagRequest $request)
     {
-        //
     }
 
     /**

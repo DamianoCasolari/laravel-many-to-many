@@ -93,7 +93,7 @@
                                 <a class="nav-link p-2 {{ Route::currentRouteName() == 'admin.tags.index' ? 'bg-dark  text-white-50 border rounded-4' : 'text-muted' }}"
                                     href="{{ route('admin.tags.index') }}">
                                     <i class="fa-solid fa-tags"></i>
-                                    {{ __('Tags') }}
+                                    {{ __('Technology') }}
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -143,7 +143,7 @@
                             <a class="nav_link {{ Route::currentRouteName() == 'admin.tags.index' ? 'bg-dark  text-white-50' : '' }}"
                                 href="{{ route('admin.tags.index') }}">
                                 <i class="fa-solid fa-tags"></i>
-                                {{ __('Tags') }}
+                                {{ __('Technology') }}
                             </a>
                         </li>
                     </ul>

@@ -29,7 +29,7 @@ class StoreProjectRequest extends FormRequest
             'link' => ['nullable'],
             'functionality' => ['nullable'],
             'languages_used' => ['nullable', 'max:255'],
-            'type_id' => ['exists:categories,id']   //per evitare manipolazione hacker dell'id
+            'type_id' => ['exists:types,id']   //per evitare manipolazione hacker dell'id
         ];
     }
 }

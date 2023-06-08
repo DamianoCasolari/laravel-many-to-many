@@ -24,7 +24,7 @@
     table-borderless
     align-middle text-center">
             <thead class="table-light">
-                <caption>Tags Index</caption>
+                <caption class="ms-1">Technology Index</caption>
                 <tr>
                     <th>Id</th>
                     <th>Name</th>

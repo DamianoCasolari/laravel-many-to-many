@@ -12,7 +12,7 @@
     @include('profile.partials.validation_errors')
     <div class="container d-flex justify-content-center align-item-center">
         <div class="form_container w-100">
-            <form class="text-white w-100" action="{{ route('admin.projects.store') }}" method="POST">
+            <form class="text-dark w-100" action="{{ route('admin.projects.store') }}" method="POST">
                 @csrf
 
                 <div class="mb-3 ">
@@ -52,6 +52,28 @@
                         @endforeach
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <p>Technology</p>
+                    @foreach ($tags as $tag)
+                        <div class="form-check @error('tags') is-invalid @enderror">
+
+                            <label class="form-check-label">
+                                <input name="tags[]" type="checkbox" value="{{ $tag->id }}" class="form-check-input"
+                                    {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}>
+                                {{ $tag->name }}
+                            </label>
+                        </div>
+                    @endforeach
+
+                    @error('tags')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+
+
+
                 <div class="mb-3 ">
                     <label for="link" class="col-4 col-form-label">Link</label>
                     <div class="col-12">
@@ -65,7 +87,7 @@
                         </div>
                     @enderror
                 </div>
-                <div class="mb-3 ">
+                {{-- <div class="mb-3 ">
                     <label for="languages_used" class="col-4 col-form-label">languages_used</label>
                     <div class="col-12">
                         <input type="text" class="form-control w-100" name="languages_used" id="languages_used"
@@ -77,7 +99,7 @@
                             <strong>Launguage_used, Error: </strong>{{ $message }}
                         </div>
                     @enderror
-                </div>
+                </div> --}}
                 <div class="mb-3 ">
                     <label for="functionality" class="col-4 col-form-label">functionality</label>
                     <div class="col-12">

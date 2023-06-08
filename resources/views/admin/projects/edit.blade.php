@@ -71,7 +71,7 @@
 
                     </select>
                 </div>
-                <div class="mb-3 ">
+                {{-- <div class="mb-3 ">
                     <label for="languages_used" class="col-4 col-form-label">languages_used</label>
                     <div class="col-12">
                         <input type="text" class="form-control w-100" name="languages_used" id="languages_used"
@@ -83,7 +83,7 @@
                             <strong>Launguage_used, Error: </strong>{{ $message }}
                         </div>
                     @enderror
-                </div>
+                </div> --}}
                 <div class="mb-3 ">
                     <label for="functionality" class="col-4 col-form-label">functionality</label>
                     <div class="col-12">
