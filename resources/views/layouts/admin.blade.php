@@ -44,9 +44,16 @@
                         href="{{ route('welcome') }}">Home</a>
                 </div>
                 <div class="">
-                    <a class="no_undescore text-white-50 p-2 d-none d-md-block hover_light td" href="#">
-                        Sign out
+                    <a class="no_undescore text-white-50 p-2 d-none d-md-block hover_light td"
+                        href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        {{ __('Sign Out') }}
                     </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
                 <button class="navbar-toggler d-md-none text-light d-flex justify-content-center align-items-center"
                     type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
@@ -97,10 +104,15 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link p-2" href="#">
-                                    <i class="fa fa-close" aria-hidden="true"></i>
-                                    Sign out
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </li>
                         </ul>
                         <form class="d-flex">

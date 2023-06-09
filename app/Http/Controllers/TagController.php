@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use Illuminate\Support\Str;
 use App\Http\Requests\StoreTagRequest;
 use App\Http\Requests\UpdateTagRequest;
 
@@ -15,7 +16,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::all();
+        $tags = Tag::orderByDesc('id')->get();
         return view('admin.tags.index', compact('tags'));
     }
 
@@ -37,6 +38,12 @@ class TagController extends Controller
      */
     public function store(StoreTagRequest $request)
     {
+        $val_data = $request->validated();
+        $slug = Str::slug($request->name);
+        $val_data['slug'] = $slug;
+
+        Tag::create($val_data);
+        return to_route('admin.tags.index')->with('message', 'New Tecnology created successfully');
     }
 
     /**
@@ -81,6 +88,7 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        return to_route('admin.tags.index')->with('message', new \Illuminate\Support\HtmlString('<b class="text-danger">' . $tag->name . '</b> delete successfully'));
     }
 }

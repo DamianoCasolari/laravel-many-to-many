@@ -5,7 +5,7 @@
     <div class="banner py-2 shadow-sm">
         <h1 class="px-2 text-primary">Show Type table</h1>
 
-        <form action="{{ route('admin.types.store') }}" method="post">
+        <form action="{{ route('admin.tags.store') }}" method="post">
             @csrf
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"><button type="submit"
@@ -14,6 +14,7 @@
                     placeholder="type the name of the new type" aria-label="Username" aria-describedby="basic-addon1">
             </div>
         </form>
+        @include('profile.partials.session_message')
 
     </div>
 
@@ -48,9 +49,7 @@
                                 data-bs-target="#modalId-{{ $type->id }}">
                                 <i class="fa-regular fa-trash-can"></i>
                             </button>
-
                         </td>
-
                     </tr>
                     <!-- MODAL -->
 

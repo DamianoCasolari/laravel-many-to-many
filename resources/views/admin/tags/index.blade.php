@@ -15,6 +15,7 @@
             </div>
         </form>
 
+        @include('profile.partials.session_message')
     </div>
 
 
@@ -74,8 +75,6 @@
                                         @method('DELETE')
                                         <button tag="submit" class="btn btn-danger m-1">Delete</button>
                                     </form>
-
-
                                 </div>
                             </div>
                         </div>
