@@ -29,7 +29,7 @@
                 <tr class="table-info">
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Slug</th>
+                    {{-- <th>Slug</th> --}}
                     <th>Projects with this type</th>
                     <th>Action</th>
                 </tr>
@@ -39,12 +39,17 @@
                     <tr class="">
                         <td scope="row"> {{ $type->id }}</td>
                         <td scope="row"> <b>{{ $type->name }}</b> </td>
-                        <td scope="row"> {{ $type->slug }}</td>
+                        {{-- <td scope="row"> {{ $type->slug }}</td> --}}
                         <td scope="row">
-                            <div class="badge p-2 bg-dark">{{ $type->projects->count() }}</div>
+                            <div class="px-3 py-2"><b class="">
+                                    {{ $type->projects->count() }}</b>
+                            </div>
 
                         </td>
                         <td scope="row">
+                            <a class="show_button text-decoration-none btn" href="{{ route('admin.types.show', $type) }}">
+                                <i class="fa-regular fa-eye fa-fw"></i>
+                            </a>
                             <button type="button" class="btn btn-danger fs_13" data-bs-toggle="modal"
                                 data-bs-target="#modalId-{{ $type->id }}">
                                 <i class="fa-regular fa-trash-can"></i>

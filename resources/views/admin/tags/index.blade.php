@@ -29,7 +29,7 @@
                 <tr class="table-info">
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Slug</th>
+                    {{-- <th>Slug</th> --}}
                     <th>N° of Projects with this lenguage</th>
                     <th>Action</th>
                 </tr>
@@ -39,11 +39,14 @@
                     <tr class="">
                         <td scope="row"> {{ $tag->id }}</td>
                         <td scope="row"> <b>{{ $tag->name }}</b> </td>
-                        <td scope="row"> {{ $tag->slug }}</td>
+                        {{-- <td scope="row"> {{ $tag->slug }}</td> --}}
                         <td scope="row">
-                            <div class="badge bg-dark">{{ $tag->projects()->count() }}</div>
+                            <div class="badge py-2 px-3 bg-primary">{{ $tag->projects()->count() }}</div>
                         </td>
                         <td scope="row">
+                            <a class="show_button text-decoration-none btn" href="{{ route('admin.tags.show', $tag) }}">
+                                <i class="fa-regular fa-eye fa-fw"></i>
+                            </a>
                             <button tag="button" class="btn btn-danger fs_13" data-bs-toggle="modal"
                                 data-bs-target="#modalId-{{ $tag->id }}">
                                 <i class="fa-regular fa-trash-can"></i>
