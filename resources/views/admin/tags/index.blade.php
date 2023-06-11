@@ -30,7 +30,7 @@
                     <th>Id</th>
                     <th>Name</th>
                     {{-- <th>Slug</th> --}}
-                    <th>N° of Projects with this lenguage</th>
+                    <th>N° of Projects with this language</th>
                     <th>Action</th>
                 </tr>
             </thead>

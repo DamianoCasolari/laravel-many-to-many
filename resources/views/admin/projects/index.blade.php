@@ -2,15 +2,36 @@
 
 
 @section('content')
-    <div class="banner py-2 shadow-sm">
-        <h1 class="px-2 text-primary">Show projects table</h1>
-        <a class="btn btn-dark m-2 " href="{{ route('admin.projects.create') }}" role="button">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            Add new Projectt</a>
+    <div class="banner py-2 shadow-sm d-flex justify-content-between">
+        <div>
+            <h1 class="px-2 text-primary">Show projects table</h1>
+            <a class="btn btn-dark m-2 " href="{{ route('admin.projects.create') }}" role="button">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Add new Projectt</a>
+        </div>
+        <div class="d-none d-lg-block">
+            <div aria-label="Page navigation example" class=" me-2">
+                <ul class="pagination">
+                    <li class="page-item ">
+                        <a class="page-link bg-transparent" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link bg-transparent" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link bg-transparent" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link bg-transparent" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link bg-transparent" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
     @include('profile.partials.session_message')
 
-    <div class="table-responsive">
+    <div class="table-responsive no_scrollbar">
         <table class="table table-striped
     table-hover
     table-borderless
@@ -22,7 +43,7 @@
                     <th>ID</th>
                     <th>Logo</th>
                     <th>Title</th>
-                    <th>Link</th>
+                    <th class="d-none d-lg-table-cell">Link</th>
                     <th>Actions</th>
 
                 </tr>
@@ -38,7 +59,8 @@
                                 height="100" src="{{ $project->logo }}" alt="{{ $project->title }}"></td>
                         <td onclick="window.location.href = '{{ route('admin.projects.show', $project) }}';">
                             {{ $project->title }}</td>
-                        <td onclick="window.location.href = '{{ route('admin.projects.show', $project) }}';">
+                        <td class="d-none d-lg-table-cell h-100"
+                            onclick="window.location.href = '{{ route('admin.projects.show', $project) }}';">
                             {{ $project->link }}</td>
 
                         <td class="buttons_container text-center">
@@ -92,5 +114,24 @@
                 @endforelse
             </tbody>
         </table>
+    </div>
+    <div class="d-block d-lg-none">
+        <div aria-label="Page navigation example" class=" me-2">
+            <ul class="pagination">
+                <li class="page-item ">
+                    <a class="page-link bg-transparent" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link bg-transparent" href="#">1</a></li>
+                <li class="page-item"><a class="page-link bg-transparent" href="#">2</a></li>
+                <li class="page-item"><a class="page-link bg-transparent" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link bg-transparent" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 @endsection

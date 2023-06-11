@@ -12,7 +12,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'logo', 'link', 'slug', 'languages_used', 'functionality', 'type_id'];
+    protected $fillable = ['title', 'logo', 'link', 'slug', 'languages_used', 'functionality', 'type_id', 'user_id'];
 
     public static function generateSlug($title)
     {
@@ -27,5 +27,10 @@ class Project extends Model
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -2,7 +2,7 @@
 
 @section('title', $project->title)
 @section('content')
-    <div class="banner container d-flex justify-content-end py-4 shadow-sm">
+    <div class="banner d-flex justify-content-end p-4 shadow-sm">
         <a href="{{ route('admin.projects.index') }}" type="button"
             class="btn btn-dark my_button position-sticky top-0 shadow-sm">
             <i class="fa-solid fa-house"></i> Back to index</a>

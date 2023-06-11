@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
-use App\Http\Requests\StoreProjectRequest;
-use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Tag;
 use App\Models\Type;
+use App\Models\User;
+use App\Models\Project;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 
 class ProjectController extends Controller
 {
@@ -17,8 +20,12 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::orderByDesc('id')->get();
-        return view('admin.projects.index', compact('projects'));
+        // $projects = Project::orderByDesc('id')->get();
+        // return view('admin.projects.index', compact('projects'));
+        // dd(Auth::user()->id);
+
+        $projects = Auth::user()->projects()->orderByDesc("id")->paginate(8);
+        return view("admin.projects.index", compact("projects"));
     }
 
     /**
@@ -49,6 +56,8 @@ class ProjectController extends Controller
         $slug = Project::generateSlug($val_data['title']);
         //dd($slug);
         $val_data['slug'] = $slug;
+        $user_id = Auth::user()->id;
+        $val_data['user_id'] = $user_id;
         //dd($val_data);
 
         // Create the new Project
@@ -71,7 +80,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        // dd($project);
+        // dd($project->user->name);
         return view('admin.projects.show', compact('project'));
     }
 
