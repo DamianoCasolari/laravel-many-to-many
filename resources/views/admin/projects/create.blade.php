@@ -12,7 +12,8 @@
     @include('profile.partials.validation_errors')
     <div class="container d-flex justify-content-center align-item-center">
         <div class="form_container w-100">
-            <form class="text-dark w-100" action="{{ route('admin.projects.store') }}" method="POST">
+            <form class="text-dark w-100" action="{{ route('admin.projects.store') }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-3 ">
@@ -32,8 +33,8 @@
                 <div class="mb-3 ">
                     <label for="logo" class="col-4 col-form-label">Logo</label>
                     <div class="col-12">
-                        <input type="text" class="form-control w-100" name="logo" id="logo"
-                            value="{{ old('logo') }}" placeholder="Logo">
+                        <input type="file" class="form-control w-100" name="logo" id="logo"
+                            value="{{ old('logo') }}" aria-describedby="helpImage" placeholder="Add logo image">
                     </div>
                     @error('logo')
                         <div class="alert alert-danger position-relative" style="margin-top:1px;" role="alert">

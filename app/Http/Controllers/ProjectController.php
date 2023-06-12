@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -58,7 +59,15 @@ class ProjectController extends Controller
         $val_data['slug'] = $slug;
         $user_id = Auth::user()->id;
         $val_data['user_id'] = $user_id;
+        // $img_path = Storage::put('uploads', $val_data('image'));
         //dd($val_data);
+
+        if ($request->hasFile('logo')) {
+            $image_path = Storage::put('uploads', $request->logo);
+            //dd($image_path);
+            $val_data['logo'] = $image_path;
+        }
+
 
         // Create the new Project
         $new_progect = Project::create($val_data);
