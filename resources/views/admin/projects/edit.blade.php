@@ -12,7 +12,8 @@
     @include('profile.partials.validation_errors')
     <div class="container d-flex justify-content-center align-item-center">
         <div class="form_container w-100">
-            <form class="text-dark w-100" action="{{ route('admin.projects.update', $project->slug) }}" method="POST">
+            <form class="text-dark w-100" action="{{ route('admin.projects.update', $project->slug) }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-3 ">
