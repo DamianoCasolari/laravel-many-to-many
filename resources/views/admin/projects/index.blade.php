@@ -55,9 +55,10 @@
                     <tr class="table-primary pointer text-center" {{-- onclick="window.location.href = '{{ route('admin.projects.show', $project) }}';" --}}>
                         <td scope="row" onclick="window.location.href = '{{ route('admin.projects.show', $project) }}';">
                             {{ $project->id }}</td>
-                        <td onclick="window.location.href = '{{ route('admin.projects.show', $project) }}';"><img
-                                height="100" src="{{ $project->logo }}" alt="{{ $project->title }}"> <img height="100"
-                                src="{{ asset('storage/' . $project->logo) }}" alt="logo">
+                        <td onclick="window.location.href = '{{ route('admin.projects.show', $project) }}';">
+                            {{-- <img
+                                height="100" src="{{ $project->logo }}" alt="{{ $project->title }}">  --}}
+                            <img height="100" src="{{ asset('storage/' . $project->logo) }}" alt="logo">
                         </td>
                         <td onclick="window.location.href = '{{ route('admin.projects.show', $project) }}';">
                             {{ $project->title }}</td>

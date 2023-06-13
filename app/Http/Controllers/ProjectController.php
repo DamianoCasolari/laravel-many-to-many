@@ -23,9 +23,9 @@ class ProjectController extends Controller
     {
         // $projects = Project::orderByDesc('id')->get();
         // return view('admin.projects.index', compact('projects'));
-        // dd(Auth::user()->id);
+        // dd(Project::all());
 
-        $projects = Auth::user()->projects()->orderByDesc("id")->paginate(8);
+        $projects = Auth::user()->projects()->orderByDesc("id")->get();
         return view("admin.projects.index", compact("projects"));
     }
 
@@ -124,13 +124,32 @@ class ProjectController extends Controller
         $val_data['slug'] = $slug;
         //dd($val_data);
 
-        // Create the new Project
-        $project->update($val_data);
         // redirect back
 
         if ($request->has('tags')) {
             $project->tags()->sync($request->tags);
         }
+
+
+        if ($request->hasFile('logo')) {
+            //dd('here');
+
+            //if project->logo
+            // delete the previous image
+
+            if ($project->logo) {
+                Storage::delete($project->logo);
+            }
+
+            // Save the file in the storage and get its path
+            $image_path = Storage::put('uploads', $request->logo);
+            //dd($image_path);
+            $val_data['logo'] = $image_path;
+        }
+
+
+        // Create the new Project
+        $project->update($val_data);
         return to_route('admin.projects.index')->with('message', 'file edited successfully');
     }
 

@@ -30,10 +30,22 @@
                     @enderror
                 </div>
                 <div class="mb-3 ">
-                    <label for="logo" class="col-4 col-form-label">Logo</label>
+                    {{-- <label for="logo" class="col-4 col-form-label">Logo</label>
                     <div class="col-12">
                         <input type="text" class="form-control w-100" name="logo" id="logo"
                             value="{{ old('logo', $project->logo) }}" placeholder="Logo">
+                    </div> --}}
+                    <div class="input_container d-flex mt-4">
+                        <div class="img_container">
+                            <img width="100" class="me-3" src="{{ asset('storage/' . $project->logo) }}"
+                                alt="Logo Image">
+                        </div>
+                        <div class="mb-3">
+                            <label for="logo" class="form-label">Replace Image</label>
+                            <input type="file" class="form-control @error('logo') is-invalid @enderror" name="logo"
+                                id="logo" aria-describedby="logoHelper" placeholder="Learn php">
+                            <small id="logoHelper" class="form-text text-muted">Type the post logo max 950k</small>
+                        </div>
                     </div>
                     @error('logo')
                         <div class="alert alert-danger position-relative" style="margin-top:1px;" role="alert">
