@@ -14,7 +14,7 @@
         </a>
 
         <div class="img_cotainer m-4 text-center">
-            <img class="img-fluid drop_shadow" src="{{ $project->logo }}" alt="{{ $project->title }}">
+            <img class="img-fluid drop_shadow" src="{{ asset('storage/' . $project->logo) }}" alt="{{ $project->title }}">
 
         </div>
         <div class="info_container text-dark py-3 ">

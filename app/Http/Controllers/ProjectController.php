@@ -49,18 +49,12 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        // dd($request->all());
-
-        // validate the request   
         $val_data =  $request->validated();
-        // generate the title slug
         $slug = Project::generateSlug($val_data['title']);
-        //dd($slug);
         $val_data['slug'] = $slug;
+
         $user_id = Auth::user()->id;
         $val_data['user_id'] = $user_id;
-        // $img_path = Storage::put('uploads', $val_data('image'));
-        //dd($val_data);
 
         if ($request->hasFile('logo')) {
             $image_path = Storage::put('uploads', $request->logo);
@@ -69,9 +63,7 @@ class ProjectController extends Controller
         }
 
 
-        // Create the new Project
         $new_progect = Project::create($val_data);
-        // redirect back
 
         if ($request->has('tags')) {
             $new_progect->tags()->attach($request->tags);
@@ -116,15 +108,9 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
 
-        // validate the request   
         $val_data =  $request->validated();
-        // generate the title slug
         $slug = Project::generateSlug($val_data['title']);
-        //dd($slug);
         $val_data['slug'] = $slug;
-        //dd($val_data);
-
-        // redirect back
 
         if ($request->has('tags')) {
             $project->tags()->sync($request->tags);
@@ -132,23 +118,17 @@ class ProjectController extends Controller
 
 
         if ($request->hasFile('logo')) {
-            //dd('here');
-
-            //if project->logo
-            // delete the previous image
 
             if ($project->logo) {
                 Storage::delete($project->logo);
             }
 
-            // Save the file in the storage and get its path
             $image_path = Storage::put('uploads', $request->logo);
-            //dd($image_path);
+
             $val_data['logo'] = $image_path;
         }
 
 
-        // Create the new Project
         $project->update($val_data);
         return to_route('admin.projects.index')->with('message', 'file edited successfully');
     }
